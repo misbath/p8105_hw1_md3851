@@ -1,0 +1,36 @@
+---
+title: "P8105_hw1_md3851"
+author: "Misbath Daouda"
+date: "9/13/2019"
+output: github_document
+---
+
+
+
+## Problem 1
+### Part 1: Creating a table 
+
+```{r problem 1, echo=FALSE}
+library(tidyverse)
+example_df = tibble(
+  norm_samp = rnorm(8),
+  norm_samp_pos = norm_samp > 0,
+  vec_char = c("This", "is", "an", "assignment", "for", "data", "science", "class"),
+  vec_factor = factor(c("small", "medium", "large", "small", "medium", "large", "small", "small"))
+)
+example_df
+```
+
+### Part 2: Understanding the nature of variables  
+
+### Part 3: Converting variables 
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
