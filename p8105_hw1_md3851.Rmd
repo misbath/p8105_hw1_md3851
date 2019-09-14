@@ -54,6 +54,8 @@ pull(
 ```
 
 ## Problem 2
+```{r}
+library(tidyverse)
 example2_df = tibble(
   x = rnorm(500),
   y = rnorm(500),
@@ -63,4 +65,27 @@ example2_df = tibble(
 )
 
 example2_df
+```
+
+This data frame contains `r ncol(example2_df)` variables and 
+`r nrow(example2_df)` rows. 
+
+The mean of the sample is `r mean(pull(example2_df, x))`.
+
+The median of the sample is `r median(pull(example2_df, x))`.
+
+The standard deviation of the sample is `r sd(pull(example2_df, x))`.
+
+The proportion of the sample such that x+y > 1 is ...
+
+```{r}
+ggplot(example2_df, aes(x = x, y = y, color = sum_greater_one)) + geom_point()
+ggplot(example2_df, aes(x = x, y = y, color = vec_num)) + geom_point()
+ggplot(example2_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
+```
+
+
+
+
+
 
