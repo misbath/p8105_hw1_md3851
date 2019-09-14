@@ -10,6 +10,7 @@ output: github_document
 ## Problem 1
 ### Part 1: Creating a table 
 
+This chunck of code creates a table following the guidelines for homework 1 
 ```{r problem 1, echo=FALSE}
 library(tidyverse)
 example_df = tibble(
@@ -22,15 +23,44 @@ example_df
 ```
 
 ### Part 2: Understanding the nature of variables  
+This chunck of code attempts to calculate the respective means of the variables included in the table from Part 1 
+```{r}
+mean(pull(example_df, var=norm_samp))
+mean(pull(example_df, var=norm_samp_pos))
+mean(pull(example_df, var=vec_char))
+mean(pull(example_df, var=vec_factor))
+```
+This shows that the mean can only be calculated for numeric and logical variables (ie, norm_samp and norm_samp_pos)
 
 ### Part 3: Converting variables 
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r problem 1 part 3, include=FALSE}
+as.numeric(pull(example_df, var=norm_samp_pos))
+as.numeric(pull(example_df, var=vec_char))
+as.numeric(pull(example_df, var=vec_factor))
+```
+```{r}
+pull(
+  example_df, var=norm_samp) * as.numeric(
+  pull(example_df, var=norm_samp_pos)
+  )
+pull(
+  example_df, var=norm_samp) * as.factor(
+  pull(example_df, var=norm_samp_pos)
+  )
+pull(
+  example_df, var=norm_samp) * as.numeric(
+  as.factor(pull(example_df, var=norm_samp_pos))
+  ) 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Problem 2
+example2_df = tibble(
+  x = rnorm(500),
+  y = rnorm(500),
+  sum_greater_one = x + y > 1,
+  vec_num = as.numeric(sum_greater_one),
+  vec_factor = as.factor(sum_greater_one)
+)
+
+example2_df
+
