@@ -10,9 +10,12 @@ output: github_document
 ## Problem 1
 ### Part 1: Creating a table 
 
-This chunck of code creates a table following the guidelines for homework 1 
-```{r problem 1, echo=FALSE}
+```{r setup, include=FALSE}
 library(tidyverse)
+```
+
+This chunck of code creates a table following the guidelines for problem 1.
+```{r problem 1 part 1}
 example_df = tibble(
   norm_samp = rnorm(8),
   norm_samp_pos = norm_samp > 0,
@@ -24,21 +27,25 @@ example_df
 
 ### Part 2: Understanding the nature of variables  
 This chunck of code attempts to calculate the respective means of the variables included in the table from Part 1 
-```{r}
+```{r problem 1 part 2, warning=FALSE}
 mean(pull(example_df, var=norm_samp))
 mean(pull(example_df, var=norm_samp_pos))
 mean(pull(example_df, var=vec_char))
 mean(pull(example_df, var=vec_factor))
 ```
-This shows that the mean can only be calculated for numeric and logical variables (ie, norm_samp and norm_samp_pos)
+R returns error messages along with the value "NA" for the character and factor variables (ie, vec_char and vec_factor). The mean can only be calculated for numeric and logical variables (ie, norm_samp and norm_samp_pos).
 
 ### Part 3: Converting variables 
-```{r problem 1 part 3, include=FALSE}
+```{r problem 1 part 3, results='hide', warning=FALSE}
 as.numeric(pull(example_df, var=norm_samp_pos))
 as.numeric(pull(example_df, var=vec_char))
 as.numeric(pull(example_df, var=vec_factor))
 ```
-```{r}
+The "as.numeric" function succesfully transforms the logical variable using a binary system to represent the TRUE/FALSE options. This explains what happened when taking the mean: R treated this logical variable as a numeric variable made up of two values (0 and 1). This is why the mean (0.25) falls between 0 and 1. 
+
+The "as.numeric" function also succesfully assigns integers (ie, 1, 2, 3) to the three levels of the factor variable. However, the character variable cannot be converted to a numeric one. 
+
+```{r problem 1 part 3 continued}
 pull(
   example_df, var=norm_samp) * as.numeric(
   pull(example_df, var=norm_samp_pos)
@@ -54,8 +61,8 @@ pull(
 ```
 
 ## Problem 2
+This chunck of code creates a table following the guidelines for problem 2.
 ```{r}
-library(tidyverse)
 example2_df = tibble(
   x = rnorm(500),
   y = rnorm(500),
@@ -68,20 +75,15 @@ example2_df
 ```
 
 This data frame contains `r ncol(example2_df)` variables and 
-`r nrow(example2_df)` rows. 
+`r nrow(example2_df)` observations. The mean and median of the sample are `r mean(pull(example2_df, x))` and `r median(pull(example2_df, x))` respectively. Its standard deviation is `r sd(pull(example2_df, x))`.
 
-The mean of the sample is `r mean(pull(example2_df, x))`.
-
-The median of the sample is `r median(pull(example2_df, x))`.
-
-The standard deviation of the sample is `r sd(pull(example2_df, x))`.
-
-The proportion of the sample such that x+y > 1 is ...
+The proportion of the sample such that x + y > 1 is `r mean(pull(example2_df,vec_num))`.
 
 ```{r}
 ggplot(example2_df, aes(x = x, y = y, color = sum_greater_one)) + geom_point()
 ggplot(example2_df, aes(x = x, y = y, color = vec_num)) + geom_point()
 ggplot(example2_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
+
 ```
 
 
