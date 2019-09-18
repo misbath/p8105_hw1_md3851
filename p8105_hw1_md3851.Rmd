@@ -85,8 +85,7 @@ ggplot(example2_df, aes(x = x, y = y, color = vec_num)) + geom_point()
 ggplot(example2_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
 
 ```
-
-
+The color scale is binary for the first and third plots since the variable used for color coding are dichotomous. However, the third plot is color coded based on a numeric variable so the scale is a gradient between 0 and 1 as R assumes that the variable could take on any value between these two integers. 
 
 
 
