@@ -41,7 +41,7 @@ as.numeric(pull(example_df, var=norm_samp_pos))
 as.numeric(pull(example_df, var=vec_char))
 as.numeric(pull(example_df, var=vec_factor))
 ```
-The "as.numeric" function succesfully transforms the logical variable using a binary system to represent the TRUE/FALSE options. This explains what happened when taking the mean: R treated this logical variable as a numeric variable made up of two values (0 and 1). This is why the mean (0.25) falls between 0 and 1. 
+The "as.numeric" function succesfully transforms the logical variable using a binary system to represent the TRUE/FALSE options. This explains what happened when taking the mean: R treated this logical variable as a numeric variable made up of two values (0 and 1). This is why the mean (0.25) falls between 0 and 1. 0 to False and 1 to true.
 
 The "as.numeric" function also succesfully assigns integers (ie, 1, 2, 3) to the three levels of the factor variable. However, the character variable cannot be converted to a numeric one. 
 
